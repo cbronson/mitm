@@ -1,0 +1,68 @@
+<template name="links">
+	{{> UI.dynamic template=stepTemplate}}
+	{{> map}}
+	<div id="exampleMap"></div>
+	<!--Sorry, ads below-->
+</template>
+
+<template name="getAddressTwo">
+	{{#if isCreator}}
+		<div class="container">
+			<div class="row">
+		      <div class="col s12 z-depth-1" id="content-container">
+		      	<h1>Waiting for other user</h1>
+		      	<div class="meetLink flow-text"><a href="{{meetLink}}">http://localhost:3000{{meetLink}}</a></div>
+		      	<p class="flow-text">Please share this page with the person you are meeting. Check back here after they have entered their address. This page will expire in 48 hours.</p>
+				<p>Note: Neither of you will ever know each other's addresses. Also, there is no need to refresh this page, it will change automatically.</p>
+		      </div>
+	  		</div>
+		</div>
+	{{else}}
+		<div class="container">
+			<div class="row">
+		      <div class="col s12 z-depth-1" id="content-container">
+		      	<h1>Meet in the Middle</h1>
+		      	<p class="flow-text">Welcome. This app will fairly and safely find a mid-meeting point between two addresses. The person who sent this to you has already entered their address. Please enter your address below - it will not be shared with anyone.</p>
+		      	{{>addressInput}}
+		      </div>
+	  		</div>
+		</div>
+	{{/if}}
+	<div class="map-container" id="addressMap"></div>
+</template>
+
+<template name="meetPoint">
+	<div class="container">
+		<div class="row">
+	      <div class="col s12 z-depth-1" id="content-container">
+	      	<h1>Meeting Point</h1>
+	      	<p class="flow-text">Based on both addresses, the best meeting locations are listed below.</p>
+	      	Vicinity: {{mpAddress}} <br/>
+	      	Exact Coordinates: 
+	      	{{#with mpCoords}}
+	      	({{lat}}, {{lng}})
+	      	{{/with}}
+	      	<br/>
+	      	<br/>
+	      	
+	      	<h4>Nearby Places</h4>
+			<div class="col s12">
+				<ul class="collection">
+					{{#each meetingPlaces}}
+						<li class="collection-item">{{name}} - {{vicinity}}</li>
+					{{/each}}
+				</ul>
+			</div>
+
+	      </div>
+  		</div>
+  		<div class="map-container" id="geocodeMap"></div>
+	</div>
+</template>
+
+
+<template name="map">
+	<div class="map-container">
+		{{> googleMap name="mainMap" options=mainMapOptions}}
+	</div>
+</template>

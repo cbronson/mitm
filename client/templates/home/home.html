@@ -1,0 +1,32 @@
+<template name="home">
+	<div class="container">
+		<div class="row">
+	      <div class="col s12 z-depth-1" id="content-container">
+	      	<h1>Meet in the Middle</h1>
+	      	<p class="flow-text">This app lets you find a middle ground between you and someone else without either of you disclosing your locations. Use it to safely meet sellers or buyers from online classifieds. Enter your address below, then click submit.</p>
+	      	{{>addressInput}}
+	      </div>
+  		</div>
+	</div>
+	<div class="map-container" id="addressMap"></div>
+</template>
+
+<template name="addressInput">
+	<form id="addressInputForm">
+		<div class="input-field col s12 m6">
+      		<input type="text" placeholder="Enter your address" id="inputAddress"/>
+      		<label class="active" for="inputAddress">Your Address</label>
+      		<button type="submit" class="btn waves-effect waves-light">Submit<i class="material-icons right">send</i>
+      		</button>
+      	</div>
+	</form>
+</template>
+
+
+<template name="appNotFound">
+	Not found.
+</template>
+
+<template name="appLoading">
+	Loading...
+</template>
