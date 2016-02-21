@@ -4,10 +4,11 @@ if (Meteor.isClient) {
 
   Meteor.startup(function(){
     
+    console.log(Geolocation.error());
 
     //Set map starting coords
-    Session.set("MAP_LAT", 28.131626);
-    Session.set("MAP_LON", -42.253554);
+    Session.set("MAP_LAT", 40.69847032728747);
+    Session.set("MAP_LON", -73.9514422416687);
 
     //dynamic map height
     setMapHeight = function(){
@@ -26,11 +27,11 @@ if (Meteor.isClient) {
         $("#inputAddress").geocomplete({
           map: "#addressMap",
           mapOptions:{
-            zoom: 4,
+            zoom: 3,
             disableDefaultUI: true,
             draggable: false,
           },
-          location: new google.maps.LatLng(Session.get("MAP_LAT"), Session.get("MAP_LON")),
+          location: new google.maps.LatLng(40.69847032728747, -73.9514422416687),
         }).bind("geocode:result", function(event, result){
           var addressOneCoords = {lat: result.geometry.location.lat(), lng: result.geometry.location.lng()}
           Session.set("ADDRESSONECOORDS", addressOneCoords);
