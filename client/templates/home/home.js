@@ -4,7 +4,7 @@ if (Meteor.isClient) {
 
   Meteor.startup(function(){
     
-    console.log(Geolocation.error());
+    //console.log(Geolocation.error());
 
     //Set map starting coords
     Session.set("MAP_LAT", 40.69847032728747);

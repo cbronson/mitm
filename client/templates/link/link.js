@@ -92,11 +92,13 @@ if (Meteor.isClient) {
     this.autorun(function () {
       if (GoogleMaps.loaded()) {
         $("#inputAddress").geocomplete({
-          map: "#addressMap",
+          /*map: "#addressMap",
           mapOptions:{
-            zoom: 2
-          },
-          location: new google.maps.LatLng(Session.get("MAP_LAT"), Session.get("MAP_LON")),
+            zoom: 3,
+            disableDefaultUI: true,
+            draggable: false,
+          },*/
+          location: new google.maps.LatLng(40.69847032728747, -73.9514422416687),
         }).bind("geocode:result", function(event, result){
           //console.log(result.geometry.location.lat());
           var addressTwoCoords = {lat: result.geometry.location.lat(), lng: result.geometry.location.lng()}

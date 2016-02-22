@@ -1,7 +1,5 @@
 <template name="links">
 	{{> UI.dynamic template=stepTemplate}}
-	{{> map}}
-	<div id="exampleMap"></div>
 	<!--Sorry, ads below-->
 </template>
 
@@ -56,7 +54,7 @@
 
 	      </div>
   		</div>
-  		<div class="map-container" id="geocodeMap"></div>
+		{{> map}}
 	</div>
 </template>
 
