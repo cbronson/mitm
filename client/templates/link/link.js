@@ -2,8 +2,17 @@
 if (Meteor.isClient) {
   
   Meteor.startup(function(){
+    //init clipboard
+    var clipboard = new Clipboard('.btn');
+    clipboard.on('success', function(e) {
+       Materialize.toast('Copied!', 4000);
+      e.clearSelection();
+    });
 
-    //Convert midpoint to human address *SECOND
+    clipboard.on('error', function(e) {
+        Materialize.toast('Sorry, not supported :(', 4000);
+    });
+        //Convert midpoint to human address *SECOND
     convertCoordsToAddress = function(coords, google){
 
       //run geocoding function and return human readable address [string]
