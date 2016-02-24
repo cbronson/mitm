@@ -58,6 +58,29 @@ if (Meteor.isClient) {
       }
     };
 
+    //find the closest police station to the GPS coords
+    //Sets Session.set("CLOSEST_POLICE");
+    getClosestPoliceStation = function(coords, google){
+      var midPoint =  new google.maps.LatLng(coords.lat,coords.lng); 
+      var service = new google.maps.places.PlacesService(GoogleMaps.maps.mainMap.instance);
+                  
+      var request = {
+        location: midPoint,
+        //radius: '5000',
+        types: ['police', 'fire_station'],
+        rankBy: google.maps.places.RankBy.DISTANCE
+      };
+
+      service.nearbySearch(request, callback);
+      
+      function callback(results, status) {
+        if (status == google.maps.places.PlacesServiceStatus.OK) {
+          Session.set("CLOSEST_POLICE", results[0]);
+        }
+      }
+
+    };
+
     Meteor.subscribe("meetingPlaces");
     
     //Load Google Maps API
@@ -160,6 +183,7 @@ if (Meteor.isClient) {
         var midPointCoords = {"lat":r.lat, "lng":r.lng};
         Session.set("MIDPOINT_COORDS", midPointCoords);
         convertCoordsToAddress(midPointCoords, google);
+        getClosestPoliceStation(midPointCoords, google);
         getMeetingPlaces(midPointCoords, google);
     });
 
@@ -175,6 +199,9 @@ if (Meteor.isClient) {
     },
     meetingPlaces: function(){
       return Session.get("MEETING_PLACES");;
+    },
+    policeStation: function(){
+      return Session.get("CLOSEST_POLICE");
     },
 
   });

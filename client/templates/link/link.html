@@ -51,6 +51,9 @@
 	      	<h4>Nearby Places</h4>
 			<div class="col s12">
 				<ul class="collection">
+					{{#with policeStation}}
+						<li class="collection-item police">{{name}} - {{vicinity}}<span class="badge"><i class="material-icons">stars</i></span></li>
+					{{/with}}
 					{{#each meetingPlaces}}
 						<li class="collection-item">{{name}} - {{vicinity}}</li>
 					{{/each}}
