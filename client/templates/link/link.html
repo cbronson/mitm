@@ -52,10 +52,10 @@
 			<div class="col s12">
 				<ul class="collection">
 					{{#with policeStation}}
-						<li class="collection-item police">{{name}} - {{vicinity}}<span class="badge"><i class="material-icons">stars</i></span></li>
+						<li class="collection-item police"><a href="http://maps.google.com/?q={{vicinity}}&z=15" target="_blank">{{name}} - {{vicinity}}<span class="badge"><i class="material-icons">stars</i></span></a></li>
 					{{/with}}
 					{{#each meetingPlaces}}
-						<li class="collection-item">{{name}} - {{vicinity}}</li>
+						<li class="collection-item"><a href="http://maps.google.com/?q={{vicinity}}&z=15" target="_blank">{{name}} - {{vicinity}}</a></li>
 					{{/each}}
 				</ul>
 			</div>
