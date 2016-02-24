@@ -19,9 +19,6 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 dburles:google-maps
 jeremy:geocomplete
 iron:router
-aldeed:simple-schema
-aldeed:collection2
-houston:admin
 chuangbo:cookie
 materialize:materialize
 less
