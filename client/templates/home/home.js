@@ -51,18 +51,23 @@ if (Meteor.isClient) {
         var UID = Math.random().toString(36).substring(7);
         Cookie.set('UID', UID);
 
-        //create new link
-        Meteor.call("createNewLink", UID, function(error, result){
-          if(!error){
-            var LID = result;
-            //add addressOne coords to Link DB
-            Meteor.call("addLinkAddress", LID, 1, Session.get("ADDRESSONECOORDS"),
-              function(error, result){
-                //Load link page
-                Router.go("/meet/"+LID);
-            });
-          }
-        });
+        if(e.target.inputAddress.value === ''){
+          //empty address
+          Materialize.toast('Please enter an address.', 4000);
+        }else{
+          //create new link
+          Meteor.call("createNewLink", UID, function(error, result){
+            if(!error){
+              var LID = result;
+              //add addressOne coords to Link DB
+              Meteor.call("addLinkAddress", LID, 1, Session.get("ADDRESSONECOORDS"),
+                function(error, result){
+                  //Load link page
+                  Router.go("/meet/"+LID);
+              });
+            }
+          });
+        }
     },
 
   });

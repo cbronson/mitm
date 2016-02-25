@@ -145,14 +145,20 @@ if (Meteor.isClient) {
   Template.getAddressTwo.events({
     "submit #addressInputForm": function(e,t){
         e.preventDefault();
-        //add address two to link
-        var LID = Router.current().params._link;
-        Meteor.call("addLinkAddress", LID, 2, Session.get("ADDRESSTWOCOORDS"),
-          function(error, result){
-            console.log(LID);
-            console.log(error);
-            Meteor.call("updateLinkStep", LID, 2);
-        });
+        
+        if(e.target.inputAddress.value === ''){
+          //empty address
+          Materialize.toast('Please enter an address.', 4000);
+        }else{
+          //add address two to link
+          var LID = Router.current().params._link;
+          Meteor.call("addLinkAddress", LID, 2, Session.get("ADDRESSTWOCOORDS"),
+            function(error, result){
+              console.log(LID);
+              console.log(error);
+              Meteor.call("updateLinkStep", LID, 2);
+          });
+        }
     },
 
   });
