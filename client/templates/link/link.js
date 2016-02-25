@@ -234,17 +234,6 @@ if (Meteor.isClient) {
     }
 
   });
-
-
-  Template.gAds.rendered = function() {  
-    $.getScript("//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", function() {
-      var ads, adsbygoogle;
-      ads = '<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3994585189519158" data-ad-slot="8299521426" data-ad-format="auto"></ins>';
-      $('.google-ads').html(ads);
-      return (adsbygoogle = window.adsbygoogle || []).push({});
-    });
-  };
-
 }
 
 if (Meteor.isServer) {
